@@ -1,25 +1,16 @@
 package pl.pp.manager.model;
 
+import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class WorkersDBUtils {
-    public static List<Worker> getWorkers() {
+    public static List<Worker> getWorkers(DataSource dataSource) {
         System.out.println("Metoda get workers");
         List<Worker> workers = new ArrayList<>();
 
-        String url = "jdbc:mysql://127.0.0.1:3306/worker_manager";
-        String user = "root";
-        String password = "";
-
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        try (Connection connection = DriverManager.getConnection(url, user, password);
+        try (Connection connection = dataSource.getConnection();
         Statement statement = connection.createStatement()) {
 
             ResultSet resultSet = statement.executeQuery("SELECT * FROM workers");
