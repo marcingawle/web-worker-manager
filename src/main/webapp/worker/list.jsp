@@ -12,6 +12,11 @@
 	<div id="header">
 		<h2>Lista pracowników</h2>
 	</div>
+	<div id="nav">
+		<a href="worker/add-worker.jsp">
+			<div class="button">Dodaj pracownika</div>
+		</a>
+	</div>
 	<div id="container">
 		<table class="styled-table">
 			<thead>
