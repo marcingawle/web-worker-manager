@@ -20,14 +20,16 @@
 	<div id="container">
 		<form method="post" action="/web-worker-manager/add-worker">
 			<fieldset>
+			    <input type="hidden" name="id" value="${worker.id}" />
+
 				<label for="first-name">Imię</label>
-				<input type="text" id="first-name" name="first-name" />
+				<input type="text" id="first-name" name="first-name" value="${worker.firstName}" />
 
 				<label for="last-name">Nazwisko</label>
-				<input type="text" id="last-name" name="last-name" />
+				<input type="text" id="last-name" name="last-name" value="${worker.lastName}" />
 
 				<label for="salary">Wypłata</label>
-				<input type="text" id="salary" name="salary" />
+				<input type="text" id="salary" name="salary" value="${worker.salary}" />
 			</fieldset>
 
 			<button type="submit">Zapisz</button>

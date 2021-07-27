@@ -48,4 +48,29 @@ public class WorkersDBUtils {
             throwables.printStackTrace();
         }
     }
+
+    public static Worker getWorkerById(int id, DataSource dataSource) {
+        String sql = "SELECT * FROM workers WHERE id = ?";
+        Worker worker = null;
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, id);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                String firstName = resultSet.getString("first_name");
+                String lastName = resultSet.getString("last_name");
+                double salary = resultSet.getDouble("salary");
+
+                worker = new Worker(id, firstName, lastName, salary);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return worker;
+    }
 }
